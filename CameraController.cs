@@ -1,27 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CameraController : MonoBehaviour {
 
-	public PlayerController thePlayer;
+	public GameObject target; 
 
-	private Vector3 lastPlayerPosition;
-	private float distanceToMove;
+	private Vector3 targetPosition;
 
 	// Use this for initialization
 	void Start () {
-		thePlayer = FindObjectOfType<PlayerController> ();
-		lastPlayerPosition = thePlayer.transform.position;
+
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-	
-		distanceToMove = thePlayer.transform.position.x - lastPlayerPosition.x;
+		if (target.gameObject != null) {
+			targetPosition = new Vector3 (target.transform.position.x + 8.0f, transform.position.y, transform.position.z);
 
-		transform.position = new Vector3 (transform.position.x + distanceToMove, transform.position.y, transform.position.z);
-
-		lastPlayerPosition = thePlayer.transform.position;
-
+			transform.position = new Vector3(targetPosition.x + 2.5f, targetPosition.y, targetPosition.z);
+		}
+			
 	}
 }
